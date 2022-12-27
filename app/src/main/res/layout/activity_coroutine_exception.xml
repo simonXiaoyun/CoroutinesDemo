@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".CoroutineExceptionActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CoroutineException"
+        android:gravity="center"
+        android:padding="50dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/automatic_transmission"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="automatic transmission"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/receive_transmission"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="receive transmission"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/child_coroutine_exception"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="child coroutine exception"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/apply_supervisorJob"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="apply supervisorJob"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/exception_propagation"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="exception propagation"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/coroutineScope"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutineScope"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/supervisorScope"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="supervisorScope"
+        android:textAllCaps="false"
+        />
+
+</LinearLayout>
