@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="coroutines Demo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        />
+   <androidx.appcompat.widget.AppCompatButton
+       android:id="@+id/go_dispatchers"
+       android:layout_width="300dp"
+       android:layout_height="wrap_content"
+       android:text="coroutines Dispatchers"
+       android:textAllCaps="false"
+       />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineScope"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines CoroutineScope"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineContext"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines CoroutineContext"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineCanCel"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines Cancel"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineException"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines Exception"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineExceptionHandler"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutineExceptionHandler"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineStart"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutineStart"
+        android:textAllCaps="false"
+        />
+
+</LinearLayout>

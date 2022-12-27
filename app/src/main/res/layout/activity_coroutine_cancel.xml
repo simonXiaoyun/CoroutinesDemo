@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".CoroutineCancelActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CoroutineCancel"
+        android:gravity="center"
+        android:padding="50dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/start_coroutine"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="start Coroutine"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel_scope"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="cancel Scope"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel_child"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="cancel Child"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/resource_close"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="resource close"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel_nonCancel"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="cancel NonCancel"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/time_out"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="timeOut"
+        android:textAllCaps="false"
+        />
+</LinearLayout>

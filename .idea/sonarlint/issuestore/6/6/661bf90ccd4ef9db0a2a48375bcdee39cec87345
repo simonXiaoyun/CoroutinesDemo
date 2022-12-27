@@ -1,0 +1,13 @@
+
+qkotlin:S6306"TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(äÕ”øÿÿÿÿ
+skotlin:S6306 "TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(á¥ €8ŸûŸÕÉ0
+skotlin:S6306'"TUsing "GlobalScope" here leads to the breaking of structured concurrency principles.(á¥ €8â²£ÕÉ0
+9kotlin:S6310"Avoid hardcoded dispatchers.(äÕ”øÿÿÿÿ
+;kotlin:S6310 "Avoid hardcoded dispatchers.(á¥ €8¢ûŸÕÉ0
+;kotlin:S6310'"Avoid hardcoded dispatchers.(á¥ €8å²£ÕÉ0
+;kotlin:S6310)"Avoid hardcoded dispatchers.(Í¡·Ş8ÔëŸşÉ0
+nkotlin:S6311"QRemove this dispatcher. It is pointless when used with only suspending functions.(äÕ”øÿÿÿÿ
+pkotlin:S6311 "QRemove this dispatcher. It is pointless when used with only suspending functions.(á¥ €8˜œ ÕÉ0
+pkotlin:S6311'"QRemove this dispatcher. It is pointless when used with only suspending functions.(á¥ €8ÅÓ›şÉ0
+`kotlin:S1144"ARemove this unused private "changeWorldWithIODispatchers" method.(¶¦öº8ú¦¤ÕÉ0
+bkotlin:S1144&"DRemove this unused private "changeWorldDefaultIODispatchers" method.(ãßÂO8ÆüşÉ0

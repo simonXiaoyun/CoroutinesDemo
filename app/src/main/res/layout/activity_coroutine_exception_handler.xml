@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".CoroutineExceptionHandlerActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CoroutineExceptionHandler"
+        android:gravity="center"
+        android:padding="50dp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/normal_Handle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="normalHandle"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/catch_case1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="catch_case1"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/catch_case2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="catch_case2"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/catch_case3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="catch_case3"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/catch_case4"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="catch_case4"
+        android:textAllCaps="false"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/catch_case5"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="catch_case5"
+        android:textAllCaps="false"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/catch_case6"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="catch_case6"
+        android:textAllCaps="false"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/exception_aggregation"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="exception aggregation"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/global_coroutineExceptionHandler"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="GlobalCoroutineExceptionHandler"
+        android:textAllCaps="false"
+        />
+</LinearLayout>
