@@ -14,6 +14,12 @@
         android:theme="@style/Theme.CoroutinesDemo"
         tools:targetApi="31">
         <activity
+            android:name=".ContestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoroutineBuilderActivity"
+            android:exported="false" />
+        <activity
             android:name=".PrincipleActivity"
             android:exported="false" />
         <activity
@@ -35,7 +41,7 @@
             android:name=".CoroutineScopeActivity"
             android:exported="false" />
         <activity
-            android:name=".DispatchersActivity"
+            android:name=".CoroutineDispatchersActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

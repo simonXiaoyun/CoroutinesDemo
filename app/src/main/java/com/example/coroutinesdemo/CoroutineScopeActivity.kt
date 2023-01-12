@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_coroutine_scope.*
 import kotlinx.coroutines.*
+import java.lang.NullPointerException
 
 class CoroutineScopeActivity : AppCompatActivity() {
 
@@ -16,9 +17,24 @@ class CoroutineScopeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coroutine_scope)
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application))[TestViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory(application)
+        )[TestViewModel::class.java]
+
+
+        globalScope_btn.setOnClickListener {
+            GlobalScope.launch {
+                delay(2000)
+                Log.i(TAG, "${Thread.currentThread()}:GlobalScope-end")
+            }
+        }
+
         mainScope_btn.setOnClickListener {
-            demoWithMainScope()
+            mainScope.launch {
+                delay(2000)
+                Log.i(TAG, "${Thread.currentThread()}:mainScope-end")
+            }
         }
 
         viewModelScope_btn.setOnClickListener {
@@ -29,31 +45,31 @@ class CoroutineScopeActivity : AppCompatActivity() {
             demoWithLifecycleScope()
         }
 
-        viewModel.stringData.observe(this){
+        viewModel.stringData.observe(this) {
             head_title.text = it
         }
 
-    }
-
-
-    private fun demoWithMainScope(){
-
-        mainScope.launch {
-            delay(5000)
-            Log.i(TAG,"${this@CoroutineScopeActivity}:mainScope-end")
+        coroutineScope_btn.setOnClickListener {
+           val scope =  CoroutineScope(Dispatchers.Main)
+            scope.launch {
+                delay(2000)
+                Log.i(TAG, "${Thread.currentThread()}:CoroutineScope-end")
+            }
         }
+
+
     }
 
-    private fun demoWithLifecycleScope(){
+    private fun demoWithLifecycleScope() {
         lifecycleScope.launch {
-            delay(5000)
-            Log.i(TAG,"${this@CoroutineScopeActivity}:lifecycleScope -end")
+            delay(3000)
+            Log.i(TAG, "${Thread.currentThread()}:lifecycleScope -end")
         }
     }
 
-    private suspend fun printWord(){
+    private suspend fun printWord() {
         delay(3000)
-        Log.i(TAG,"print word")
+        Log.i(TAG, "print word")
     }
 
     override fun onDestroy() {

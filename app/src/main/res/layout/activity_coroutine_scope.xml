@@ -16,10 +16,18 @@
         android:text="hello world"
         />
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/globalScope_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use GlobalScope"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mainScope_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Execute elapsed time"
+        android:text="Use MainScope"
         android:textAllCaps="false"
         />
     <androidx.appcompat.widget.AppCompatButton
@@ -35,6 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Use lifecycleScope"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/coroutineScope_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use CoroutineScope"
         android:textAllCaps="false"
         />
 </LinearLayout>

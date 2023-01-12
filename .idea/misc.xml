@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_contest.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/layout/activity_coroutine_builder.xml" value="0.12183383991894631" />
         <entry key="app/src/main/res/layout/activity_coroutine_cancel.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_coroutine_context.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_coroutine_exception.xml" value="0.19610507246376813" />

@@ -1,8 +1,6 @@
 package com.example.coroutinesdemo
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class TestDemo {
 

@@ -14,19 +14,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             Log.i(TAG, "Hello World")
             printWorld("Hello World delay")
             Log.i(TAG, "Hello World end")
         }
 
         go_dispatchers.setOnClickListener {
-            startActivity(Intent(this, DispatchersActivity::class.java))
+            startActivity(Intent(this, CoroutineDispatchersActivity::class.java))
         }
 
         go_coroutineScope.setOnClickListener {
             startActivity(Intent(this, CoroutineScopeActivity::class.java))
+        }
+
+        go_coroutineBuilder.setOnClickListener {
+            startActivity(Intent(this, CoroutineBuilderActivity::class.java))
         }
 
         go_coroutineContext.setOnClickListener {
@@ -49,15 +52,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, CoroutineStartPatternActivity::class.java))
         }
 
-        GlobalScope.launch(Dispatchers.Main) {
-            Log.i(TAG, "主线程的代码start：${Thread.currentThread().name}")
-            user_name.text = async {
-                //模拟网络请求
-                getUserName()
-            }.await()
-            //继续主线代码
-            Log.i(TAG, "主线程的代码：${Thread.currentThread().name}")
-            //……
+        go_contest.setOnClickListener {
+            startActivity(Intent(this, ContestActivity::class.java))
+        }
+
+        first_demo.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch{
+                Log.i(TAG, "主线程的代码start：${Thread.currentThread().name}")
+                user_name.text = getUserName()  //模拟网络请求
+                //继续主线代码
+                Log.i(TAG, "主线程的代码：${Thread.currentThread().name}")
+                //……
+            }
         }
 
     }

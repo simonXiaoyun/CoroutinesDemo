@@ -18,6 +18,14 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/first_demo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="First demo"
+        android:textAllCaps="false"
+        />
+
    <androidx.appcompat.widget.AppCompatButton
        android:id="@+id/go_dispatchers"
        android:layout_width="300dp"
@@ -31,6 +39,14 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="coroutines CoroutineScope"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineBuilder"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines launch and async"
         android:textAllCaps="false"
         />
 
@@ -71,6 +87,14 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="coroutineStart"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_contest"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="go contest"
         android:textAllCaps="false"
         />
 
