@@ -16,7 +16,7 @@ class CoroutineContextActivity : AppCompatActivity() {
         setContentView(R.layout.activity_coroutine_context)
 
         get_coroutineContext.setOnClickListener {
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 val context = getCoroutineContext()
                 val dispatcher = context[CoroutineDispatcher]
                 val name = context[CoroutineName]
@@ -41,26 +41,24 @@ class CoroutineContextActivity : AppCompatActivity() {
 
     @OptIn(ExperimentalStdlibApi::class)
     private fun useCoroutineContext() {
-        val jo = Job()
-        val job =
-            GlobalScope.launch(Dispatchers.IO + CoroutineName("demo") + CoroutineExceptionHandler { _, _ -> } + jo) {
-                delay(1000)
-                val context = this.coroutineContext
-                val dispatcher = context[CoroutineDispatcher]
-                val name = context[CoroutineName]
-                val job = context[Job]
-                Log.i(TAG, "dispatcher:$dispatcher")
-                Log.i(TAG, "name:$name")
-                Log.i(TAG, "job:$job")
-            }
-        Log.i(TAG, "jo:$jo")
-        Log.i(TAG, "job:$job")
+
+        CoroutineScope(Dispatchers.IO + CoroutineName("demo") + CoroutineExceptionHandler { _, _ -> } + Job()).launch {
+            delay(1000)
+            val context = this.coroutineContext
+            val dispatcher = context[CoroutineDispatcher]
+            val name = context[CoroutineName]
+            val job = context[Job]
+            Log.i(TAG, "dispatcher:$dispatcher")
+            Log.i(TAG, "name:$name")
+            Log.i(TAG, "job:$job")
+        }
     }
 
     @OptIn(ExperimentalStdlibApi::class)
     private fun coroutineContextExtend() {
-        GlobalScope.launch(Dispatchers.Main) {
-            launch(CoroutineName("extend")) {
+        val jo = Job()
+        val job = CoroutineScope(CoroutineName("Parent") + Dispatchers.Main + jo)
+            .launch(CoroutineName("extend")) {
                 val context = this.coroutineContext
                 val dispatcher = context[CoroutineDispatcher]
                 val name = context[CoroutineName]
@@ -71,6 +69,7 @@ class CoroutineContextActivity : AppCompatActivity() {
                 Log.i(TAG, "job:$job")
                 Log.i(TAG, "handler:$handler")
             }
-        }
+        Log.i(TAG, "jo:$jo")
+        Log.i(TAG, "job:$job")
     }
 }

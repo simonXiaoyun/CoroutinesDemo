@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_contest.*
 import kotlinx.coroutines.*
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 

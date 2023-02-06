@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_coroutine_scope.*
 import kotlinx.coroutines.*
-import java.lang.NullPointerException
 
 class CoroutineScopeActivity : AppCompatActivity() {
 
@@ -56,7 +55,6 @@ class CoroutineScopeActivity : AppCompatActivity() {
                 Log.i(TAG, "${Thread.currentThread()}:CoroutineScope-end")
             }
         }
-
 
     }
 

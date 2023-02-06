@@ -52,18 +52,23 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, CoroutineStartPatternActivity::class.java))
         }
 
-        go_contest.setOnClickListener {
-            startActivity(Intent(this, ContestActivity::class.java))
+        go_async_way.setOnClickListener {
+            startActivity(Intent(this, AsyncJobHandleActivity::class.java))
+        }
+
+        project_management.setOnClickListener {
+            startActivity(Intent(this, DevelopmentProjectActivity::class.java))
         }
 
         first_demo.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch{
+            CoroutineScope(Dispatchers.Main).launch {
                 Log.i(TAG, "主线程的代码start：${Thread.currentThread().name}")
                 user_name.text = getUserName()  //模拟网络请求
                 //继续主线代码
                 Log.i(TAG, "主线程的代码：${Thread.currentThread().name}")
                 //……
             }
+            Log.i(TAG,"协程代码块之外的代码")
         }
 
     }

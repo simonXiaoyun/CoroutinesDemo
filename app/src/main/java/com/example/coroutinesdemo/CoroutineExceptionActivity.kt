@@ -16,7 +16,7 @@ class CoroutineExceptionActivity : AppCompatActivity() {
 
         automatic_transmission.setOnClickListener {
 
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 try {
                     Log.i(TAG, "start")
                     var list = emptyList<String>()
@@ -28,7 +28,7 @@ class CoroutineExceptionActivity : AppCompatActivity() {
         }
 
         receive_transmission.setOnClickListener {
-            val deferred = GlobalScope.async {
+            val deferred = CoroutineScope(Dispatchers.Main).async {
                 Log.i(TAG, "start")
                 var list = emptyList<String>()
                 list[0]
@@ -44,20 +44,6 @@ class CoroutineExceptionActivity : AppCompatActivity() {
 
         }
 
-//        child_coroutine_exception.setOnClickListener {
-//            try {
-//                GlobalScope.launch {
-//
-//                    async {
-//                        throw NullPointerException()
-//                    }
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//
-//        }
-
         child_coroutine_exception.setOnClickListener {
             runBlocking {
                 val coroutineScope =
@@ -72,7 +58,7 @@ class CoroutineExceptionActivity : AppCompatActivity() {
                 coroutineScope.launch {
                     try {
                         repeat(1000) { i ->
-                            Log.i(TAG, "child2$i")
+                            Log.i(TAG, "child2-$i")
                             delay(500)
                         }
                     } finally {

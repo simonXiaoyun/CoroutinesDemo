@@ -15,12 +15,13 @@ class CoroutineCancelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coroutine_cancel)
 
-        var parentJob: Job? = null
+        var scope = CoroutineScope(Dispatchers.Main)
         var job1: Job? = null
         var job2: Job? = null
         var job3: Job? = null
         start_coroutine.setOnClickListener {
-            parentJob = GlobalScope.launch {
+            scope = CoroutineScope(Dispatchers.Main)
+            scope.launch {
                 job1 = launch {
                     delay(2000)
                     Log.i(TAG, "coroutine one")
@@ -38,7 +39,7 @@ class CoroutineCancelActivity : AppCompatActivity() {
         }
 
         cancel_scope.setOnClickListener {
-            parentJob?.cancel()
+            scope.cancel()
         }
 
         cancel_child.setOnClickListener {
@@ -46,7 +47,7 @@ class CoroutineCancelActivity : AppCompatActivity() {
         }
 
         resource_close.setOnClickListener {
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 var inputStream: InputStream? = null
                 try {
                     inputStream = assets.open("test.txt")
@@ -61,6 +62,7 @@ class CoroutineCancelActivity : AppCompatActivity() {
                     inputStream?.close()
                 }
             }
+
             assets.open("test.txt").use {
                 val length = it.available()
                 val buffer = ByteArray(length)
@@ -72,7 +74,7 @@ class CoroutineCancelActivity : AppCompatActivity() {
 
         //取消一些不可取消任务
         cancel_nonCancel.setOnClickListener {
-            runBlocking {
+            CoroutineScope(Dispatchers.IO).launch {
                 val job = launch {
                     try {
                         repeat(1000) { i ->
@@ -80,7 +82,7 @@ class CoroutineCancelActivity : AppCompatActivity() {
                             delay(500)
                         }
                     } finally {
-                        //假设是释放资源，并且是一个耗时的操作
+                        //假设是释放资源，并且是一个耗时的操作,如果不切换这个调度，则资源释放不会完成，会造成内存泄漏
                         withContext(NonCancellable) {
                             Log.i(TAG, "开始释放资源……")
                             delay(2000)
@@ -95,10 +97,10 @@ class CoroutineCancelActivity : AppCompatActivity() {
         }
         //超时取消
         time_out.setOnClickListener {
-            runBlocking {
+            CoroutineScope(Dispatchers.IO).launch {
 //                withTimeoutOrNull() //返回null，不会抛出异常
-                withTimeout(3000){
-                    repeat(1000){
+                withTimeout(3000) {
+                    repeat(1000) {
                         Log.i(TAG, "job sleep$it")
                         delay(500)
                     }
@@ -106,7 +108,6 @@ class CoroutineCancelActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
 }

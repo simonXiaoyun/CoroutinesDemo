@@ -26,6 +26,14 @@
         android:textAllCaps="false"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineScope"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines CoroutineScope"
+        android:textAllCaps="false"
+        />
+
    <androidx.appcompat.widget.AppCompatButton
        android:id="@+id/go_dispatchers"
        android:layout_width="300dp"
@@ -35,10 +43,10 @@
        />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_coroutineScope"
+        android:id="@+id/go_coroutineContext"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="coroutines CoroutineScope"
+        android:text="coroutines CoroutineContext"
         android:textAllCaps="false"
         />
 
@@ -47,14 +55,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="coroutines launch and async"
-        android:textAllCaps="false"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_coroutineContext"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="coroutines CoroutineContext"
         android:textAllCaps="false"
         />
 
@@ -91,10 +91,18 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_contest"
+        android:id="@+id/go_async_way"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="go contest"
+        android:text="go async way"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/project_management"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="project management"
         android:textAllCaps="false"
         />
 

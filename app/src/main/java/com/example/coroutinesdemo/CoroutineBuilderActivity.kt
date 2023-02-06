@@ -37,7 +37,8 @@ class CoroutineBuilderActivity : AppCompatActivity() {
                     Log.i(TAG, "data2:$data2")
                 }
                 Log.i(TAG, "print data1 before")
-                Log.i(TAG, "data1:${job1.await()}")
+                data1 = job1.await()
+                Log.i(TAG, "data1:$data1")
                 Log.i(TAG, "print data1 after")
             }
         }

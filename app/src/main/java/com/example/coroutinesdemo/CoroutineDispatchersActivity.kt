@@ -37,7 +37,7 @@ class CoroutineDispatchersActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             Log.i(TAG,"IO线程：${Thread.currentThread().name}")
             val str = generateWorld()
-//            head_title.text = str
+            head_title.text = str
         }
     }
 

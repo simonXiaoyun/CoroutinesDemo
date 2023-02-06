@@ -3,6 +3,7 @@ package com.example.coroutinesdemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_coroutine_exception_handler.*
 import kotlinx.coroutines.*
 import java.lang.NullPointerException
@@ -28,31 +29,25 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
 
         catch_case1.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                //不在根协程，无法捕获
+                //此处能捕获吗？
                 launch(CoroutineExceptionHandler { _, e ->
                     Log.i(TAG, "异常处理：$e")
                 }) {
-                    launch {
                         Log.i(TAG, "case1 job start")
                         delay(100)
                         throw IndexOutOfBoundsException()
-
-                    }
                 }
             }
         }
 
         catch_case2.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                launch(CoroutineExceptionHandler { _, e ->
+            CoroutineScope(Dispatchers.IO).launch(CoroutineExceptionHandler { _, e ->
                     Log.i(TAG, "异常处理：$e")
                 }) {
                     Log.i(TAG, "case2 job start")
                     delay(100)
                     throw IndexOutOfBoundsException()
-
                 }
-            }
         }
 
         catch_case3.setOnClickListener {
@@ -64,7 +59,6 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
                     delay(100)
                     Log.i(TAG, "case3 job1 end")
                     throw IndexOutOfBoundsException()
-
                 }
 
                 launch {
@@ -83,7 +77,6 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
                         delay(100)
                         Log.i(TAG, "case4 job1 end")
                         throw IndexOutOfBoundsException()
-
                     }
 
                     val job2 = async {
@@ -92,14 +85,16 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
                         Log.i(TAG, "case4 job2 end")
                     }
 
-//                    runCatching {
-//                        job1.await()
-//                        job2.await()
-//                    }
+                    runCatching {
+                        job2.await()
+                        //此处能catch到吗?
+                        job1.await()
+                    }
                 }
             }
         }
 
+        //异常阻断传播
         catch_case5.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 launch {
@@ -111,7 +106,7 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
 
                     }
 
-                    val job2 = async {
+                    async {
                         Log.i(TAG, "case5 job2 start")
                         delay(200)
                         Log.i(TAG, "case5 job2 end")
@@ -119,7 +114,6 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
 
                     try {
                         job1.await()
-                        job2.await()
                     } catch (e: Exception) {
                         Log.i(TAG, "异常：$e")
                     }
@@ -127,8 +121,9 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
             }
         }
 
+        //异常阻断传播
         catch_case6.setOnClickListener {
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 launch(SupervisorJob() + CoroutineExceptionHandler { _, e ->
                     Log.i(TAG, "异常处理$e")
                 }) {
@@ -147,8 +142,9 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
             }
         }
 
+        //异常聚合
         exception_aggregation.setOnClickListener {
-            GlobalScope.launch(CoroutineExceptionHandler { _, e ->
+            lifecycleScope.launch(CoroutineExceptionHandler { _, e ->
                 Log.i(TAG, "异常处理:$e---${e.suppressed.contentToString()}")
             }) {
                 launch {
@@ -161,31 +157,28 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
                 launch {
                     try {
                         Log.i(TAG, "aggregation job2 start")
-                        delay(Long.MAX_VALUE)
+                        delay(1000)
                     } finally {
                         throw  IndexOutOfBoundsException()
                         Log.i(TAG, "aggregation job2 end")
                     }
-
-
                 }
 
                 launch {
                     try {
                         Log.i(TAG, "aggregation job3 start")
-                        delay(Long.MAX_VALUE)
+                        delay(1000)
                     } finally {
                         throw  IllegalAccessException()
                         Log.i(TAG, "aggregation job3 end")
                     }
-
                 }
 
             }
         }
 
         global_coroutineExceptionHandler.setOnClickListener {
-            GlobalScope.launch {
+            lifecycleScope.launch {
                 throw NullPointerException()
             }
         }

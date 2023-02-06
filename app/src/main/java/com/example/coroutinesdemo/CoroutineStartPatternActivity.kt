@@ -3,6 +3,7 @@ package com.example.coroutinesdemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_coroutine_start_pattern.*
 import kotlinx.coroutines.*
 
@@ -13,7 +14,7 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
         setContentView(R.layout.activity_coroutine_start_pattern)
 
         start_default.setOnClickListener {
-            val job = GlobalScope.launch(start = CoroutineStart.DEFAULT) {
+            val job = lifecycleScope.launch(start = CoroutineStart.DEFAULT) {
                 Log.i(TAG,"job start")
                 delay(1000)
                 Log.i(TAG,"job end")
@@ -24,7 +25,7 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
         }
 
         start_atomic.setOnClickListener {
-            val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
+            val job = lifecycleScope.launch(start = CoroutineStart.ATOMIC) {
                 Log.i(TAG,"job start")
                 delay(1000)
                 Log.i(TAG,"job end")
@@ -36,13 +37,13 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
 
         start_lazy.setOnClickListener {
             runBlocking {
-                val job = GlobalScope.launch(start = CoroutineStart.LAZY) {
+                val job = lifecycleScope.launch(start = CoroutineStart.LAZY) {
                     Log.i(TAG,"job start")
                     delay(1000)
                     Log.i(TAG,"job end")
                 }
                 Log.i(TAG,"main code")
-                val job2 = GlobalScope.launch {
+                val job2 = lifecycleScope.launch {
                     Log.i(TAG,"job2 start")
                     delay(1000)
                     Log.i(TAG,"job2 end")
@@ -53,7 +54,7 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
         }
 
         start_undispatched.setOnClickListener {
-             GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+            lifecycleScope.launch(start = CoroutineStart.UNDISPATCHED) {
                     Log.i(TAG,"job start:${Thread.currentThread()}")
                     launch {
                         Log.i(TAG,"child job start:${Thread.currentThread()}")
