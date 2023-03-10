@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import kotlinx.android.synthetic.main.activity_coroutine_exception.*
 import kotlinx.android.synthetic.main.activity_coroutine_exception_handler.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.coroutineScope
 import java.lang.NullPointerException
 
 class CoroutineExceptionHandlerActivity : AppCompatActivity() {
@@ -27,6 +29,7 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
             }
         }
 
+        // not  root
         catch_case1.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 //此处能捕获吗？
@@ -40,6 +43,7 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
             }
         }
 
+        // root
         catch_case2.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch(CoroutineExceptionHandler { _, e ->
                     Log.i(TAG, "异常处理：$e")
@@ -50,6 +54,7 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
                 }
         }
 
+        //添加SupervisorJob()能让子协程自己处理异常吗？
         catch_case3.setOnClickListener {
             CoroutineScope(Dispatchers.IO + CoroutineExceptionHandler { _, e ->
                 Log.i(TAG, "异常处理：$e")
@@ -67,6 +72,7 @@ class CoroutineExceptionHandlerActivity : AppCompatActivity() {
                     Log.i(TAG, "case3 job2 end")
                 }
             }
+
         }
 
         catch_case4.setOnClickListener {

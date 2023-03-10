@@ -14,7 +14,7 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
         setContentView(R.layout.activity_coroutine_start_pattern)
 
         start_default.setOnClickListener {
-            val job = lifecycleScope.launch(start = CoroutineStart.DEFAULT) {
+            val job = CoroutineScope(Dispatchers.IO).launch(start = CoroutineStart.DEFAULT) {
                 Log.i(TAG,"job start")
                 delay(1000)
                 Log.i(TAG,"job end")
@@ -25,7 +25,7 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
         }
 
         start_atomic.setOnClickListener {
-            val job = lifecycleScope.launch(start = CoroutineStart.ATOMIC) {
+            val job = CoroutineScope(Dispatchers.IO).launch(start = CoroutineStart.ATOMIC) {
                 Log.i(TAG,"job start")
                 delay(1000)
                 Log.i(TAG,"job end")
@@ -37,13 +37,13 @@ class CoroutineStartPatternActivity : AppCompatActivity() {
 
         start_lazy.setOnClickListener {
             runBlocking {
-                val job = lifecycleScope.launch(start = CoroutineStart.LAZY) {
+                val job = GlobalScope.launch(start = CoroutineStart.LAZY) {
                     Log.i(TAG,"job start")
                     delay(1000)
                     Log.i(TAG,"job end")
                 }
                 Log.i(TAG,"main code")
-                val job2 = lifecycleScope.launch {
+                val job2 = GlobalScope.launch {
                     Log.i(TAG,"job2 start")
                     delay(1000)
                     Log.i(TAG,"job2 end")

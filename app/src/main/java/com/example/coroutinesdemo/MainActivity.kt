@@ -14,12 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            Log.i(TAG, "Hello World")
-            printWorld("Hello World delay")
-            Log.i(TAG, "Hello World end")
-        }
-
         go_dispatchers.setOnClickListener {
             startActivity(Intent(this, CoroutineDispatchersActivity::class.java))
         }
@@ -61,22 +55,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         first_demo.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                Log.i(TAG, "主线程的代码start：${Thread.currentThread().name}")
+           CoroutineScope(Dispatchers.Main).launch {
+                Log.i(TAG, "A-主线程的代码start：${Thread.currentThread().name}")
                 user_name.text = getUserName()  //模拟网络请求
                 //继续主线代码
-                Log.i(TAG, "主线程的代码：${Thread.currentThread().name}")
-                //……
+                Log.i(TAG, "B-主线程的代码：${Thread.currentThread().name}")
+                user_age.text = getAge().toString()  //模拟网络请求
+                //继续主线程代码
+                Log.i(TAG, "C-主线程的代码年龄之后：${Thread.currentThread().name}")
             }
-            Log.i(TAG,"协程代码块之外的代码")
+
+            Log.i(TAG, "D-主线程协程代码块之外的代码")
         }
 
     }
 
 
     private suspend fun getUserName(): String {
-        delay(2000)
+        withContext(Dispatchers.IO){
+            Log.i(TAG,"获取用户名：${Thread.currentThread().name}")
+            delay(3000)
+        }
         return "Simon"
+    }
+
+    private suspend fun getAge(): Int {
+        withContext(Dispatchers.IO) {
+            delay(2000)
+        }
+        return 18
     }
 
     private suspend fun printWorld(string: String) {

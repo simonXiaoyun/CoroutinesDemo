@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_coroutine_builder.*
 import kotlinx.coroutines.*
+import java.util.concurrent.Executors
+import kotlin.math.log10
+
 class CoroutineBuilderActivity : AppCompatActivity() {
     private val TAG = "Simon"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,13 +24,13 @@ class CoroutineBuilderActivity : AppCompatActivity() {
                     data2 = getData(2)
                     Log.i(TAG, "data2:$data2")
                 }
-//                job1.join()
+                job1.join()
                 Log.i(TAG, "data1:$data1")
             }
         }
 
         async_builder.setOnClickListener {
-            CoroutineScope(Dispatchers.Default).launch {
+            CoroutineScope(Executors.newSingleThreadExecutor().asCoroutineDispatcher()).launch {
                 var data1 = "init data1"
                 var data2 = "init data2"
 
@@ -83,10 +86,85 @@ class CoroutineBuilderActivity : AppCompatActivity() {
             }
         }
 
+        concurrence_demo1.setOnClickListener {
+            concurrenceDemo1()
+        }
+
+        concurrence_demo2.setOnClickListener {
+            concurrenceDemo2()
+        }
+
     }
 
     private suspend fun getData(index: Int): String {
         delay(2000)
         return "data is $index"
     }
+
+    private fun concurrenceDemo1() {
+        val startTime = System.currentTimeMillis()
+        CoroutineScope(Dispatchers.Main).launch {
+            launch {
+                delay(1000)
+                Log.i(TAG, "A在运行在:${Thread.currentThread().name}")
+            }
+
+            launch {
+                delay(2000)
+                Log.i(TAG, "B在运行:${Thread.currentThread().name}")
+            }
+
+            launch {
+                delay(1000)
+                Log.i(TAG, "C在运行:${Thread.currentThread().name}")
+            }
+        }.invokeOnCompletion {
+            val endTime = System.currentTimeMillis()
+            Log.i(TAG, "协程运行时间：${endTime - startTime}")
+        }
+    }
+
+    private fun concurrenceDemo2() {
+        var num = 0
+        var num2 = 0
+        CoroutineScope(Dispatchers.Main).launch {
+            launch {
+                while (true) {
+                    num++
+                    if (num == 10) {
+//                        yield()
+                    }
+
+                    if (num == 20) {
+                        break
+                    }
+                    if (num % 2 == 0) {
+                        Log.i(TAG, "A在运行在:${Thread.currentThread().name}")
+                    }
+                }
+
+            }
+
+            launch {
+                while (true) {
+                    num2++
+                    if (num2 == 10) {
+//                        yield()
+                    }
+
+                    if (num2 == 20) {
+                        break
+                    }
+                    if (num2 % 2 == 0) {
+                        Log.i(TAG, "B在运行在:${Thread.currentThread().name}")
+                    }
+                }
+            }
+
+            launch {
+                Log.i(TAG, "C在运行:${Thread.currentThread().name}")
+            }
+        }
+    }
+    //协程并发与线程异步并发
 }

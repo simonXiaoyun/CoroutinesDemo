@@ -25,10 +25,34 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/automatic_transmission2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="automatic transmission2"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/receive_transmission"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="receive transmission"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/receive_transmission2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="receive transmission2"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/not_root_transmission"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="not root transmission"
         android:textAllCaps="false"
         />
 
@@ -49,10 +73,10 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/exception_propagation"
+        android:id="@+id/apply_supervisorJob2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="exception propagation"
+        android:text="apply supervisorJob2"
         android:textAllCaps="false"
         />
 

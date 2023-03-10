@@ -41,7 +41,6 @@ class CoroutineContextActivity : AppCompatActivity() {
 
     @OptIn(ExperimentalStdlibApi::class)
     private fun useCoroutineContext() {
-
         CoroutineScope(Dispatchers.IO + CoroutineName("demo") + CoroutineExceptionHandler { _, _ -> } + Job()).launch {
             delay(1000)
             val context = this.coroutineContext

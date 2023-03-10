@@ -1,11 +1,9 @@
 package com.example.coroutinesdemo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.util.Log
-import io.reactivex.Scheduler
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.Single
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,12 +28,27 @@ class AsyncJobHandleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_async_job_handle)
-        coroutineWay()
+        thread_way.setOnClickListener {
+            threadWithHandleWay()
+        }
+
+        rxjava_way.setOnClickListener {
+            rxjavaWay()
+        }
+
+        coroutine_way.setOnClickListener {
+            coroutineWay()
+        }
+
+        reset.setOnClickListener {
+            user_name.text = "User name"
+            user_info.text = "User info"
+        }
     }
 
     private fun threadWithHandleWay() {
         val thread = Thread {
-            val name = login("123")
+            val name = login()
             val msg = Message()
             msg.arg1 = 1
             msg.obj = name
@@ -53,7 +66,7 @@ class AsyncJobHandleActivity : AppCompatActivity() {
 
     private fun rxjavaWay() {
         Single.create<String> { emitter ->
-            val name = login("123")
+            val name = login()
             emitter.onSuccess(name)
         }
             .observeOn(AndroidSchedulers.mainThread())
@@ -80,15 +93,14 @@ class AsyncJobHandleActivity : AppCompatActivity() {
 
     private fun coroutineWay() {
         CoroutineScope(Dispatchers.Main).launch {
-            val name = loginWithCoroutine("123")
+            val name = loginWithCoroutine()
             user_name.text = name
             val userInfo = getUserInfoWithCoroutine(name)
             user_info.text = userInfo
-
         }
     }
 
-    private fun login(password: String): String {
+    private fun login(): String {
         Thread.sleep(1000)
         return "simon"
     }
@@ -102,7 +114,7 @@ class AsyncJobHandleActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun loginWithCoroutine(password: String): String {
+    private suspend fun loginWithCoroutine(): String {
         delay(1000)
         return "simon"
     }

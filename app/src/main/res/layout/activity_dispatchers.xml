@@ -17,10 +17,56 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/change"
+        android:id="@+id/change_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="chang World"
+        android:text="Chang world with main"
+        android:textAllCaps="false"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_IO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chang world with IO"
+        android:textAllCaps="false"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chang world with default"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/use_unconfined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UseUnconfined"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/use_handlerThread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use handlerThread"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/use_thread_executor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use threadExecutor"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/use_custom_dispatcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use custom dispatcher"
         android:textAllCaps="false"
         />
 </LinearLayout>

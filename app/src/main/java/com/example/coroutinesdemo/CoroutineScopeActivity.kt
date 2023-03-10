@@ -13,6 +13,7 @@ class CoroutineScopeActivity : AppCompatActivity() {
     private val TAG = "Simon"
     private var mainScope = MainScope()
     private lateinit var viewModel: TestViewModel
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coroutine_scope)
@@ -24,16 +25,34 @@ class CoroutineScopeActivity : AppCompatActivity() {
 
         globalScope_btn.setOnClickListener {
             GlobalScope.launch {
+                Log.i(TAG,"GlobalScope-start")
                 delay(2000)
                 Log.i(TAG, "${Thread.currentThread()}:GlobalScope-end")
+                launch {
+                    Log.i(TAG,"GlobalScope-child-start")
+                    delay(2000)
+                    Log.i(TAG,"GlobalScope-child-end")
+                }
+                //是否可以取消？
+//                cancel()
+
             }
+            //是否可以取消？
+            GlobalScope.cancel()
         }
 
         mainScope_btn.setOnClickListener {
             mainScope.launch {
                 delay(2000)
                 Log.i(TAG, "${Thread.currentThread()}:mainScope-end")
+                launch {
+                    Log.i(TAG,"MainScope-child-start")
+                    delay(2000)
+                    Log.i(TAG,"MainScope-child-end")
+                }
             }
+            //可以取消
+            mainScope.cancel()
         }
 
         viewModelScope_btn.setOnClickListener {
@@ -58,6 +77,8 @@ class CoroutineScopeActivity : AppCompatActivity() {
 
     }
 
+
+    //测试Scope传job,取消相关
     private fun demoWithLifecycleScope() {
         lifecycleScope.launch {
             delay(3000)
@@ -65,13 +86,11 @@ class CoroutineScopeActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun printWord() {
-        delay(3000)
-        Log.i(TAG, "print word")
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         mainScope.cancel()
     }
+
+    //关于MainScope 和 lifecycleScope的应用场景及区别
+    // GlobalScope 与 CoroutineScope  CoroutineScope是接口，而GlobalScope是实现的子类，传入的context是EmptyCoroutineContext
 }

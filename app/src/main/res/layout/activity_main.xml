@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,14 +14,57 @@
         android:text="coroutines Demo"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/user_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="年龄"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/first_demo"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="First demo"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_async_way"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="async way"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineContext"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines CoroutineContext"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_dispatchers"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines Dispatchers"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/go_coroutineBuilder"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="coroutines launch and async"
         android:textAllCaps="false"
         />
 
@@ -34,27 +76,11 @@
         android:textAllCaps="false"
         />
 
-   <androidx.appcompat.widget.AppCompatButton
-       android:id="@+id/go_dispatchers"
-       android:layout_width="300dp"
-       android:layout_height="wrap_content"
-       android:text="coroutines Dispatchers"
-       android:textAllCaps="false"
-       />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_coroutineContext"
+        android:id="@+id/go_coroutineStart"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="coroutines CoroutineContext"
-        android:textAllCaps="false"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_coroutineBuilder"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="coroutines launch and async"
+        android:text="coroutineStart"
         android:textAllCaps="false"
         />
 
@@ -82,21 +108,6 @@
         android:textAllCaps="false"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_coroutineStart"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="coroutineStart"
-        android:textAllCaps="false"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_async_way"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="go async way"
-        android:textAllCaps="false"
-        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/project_management"

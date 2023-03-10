@@ -33,7 +33,7 @@ class DevelopmentProjectActivity : AppCompatActivity() {
     private fun rxjavaPattern() {
         //PM 需求管理
         rxDemandManage().flatMap {
-            Log.i(TAG, "需求管理完成")
+            Log.i(TAG, it)
             //设计
             Single.zip(
                 rxDesign("设计师1"),

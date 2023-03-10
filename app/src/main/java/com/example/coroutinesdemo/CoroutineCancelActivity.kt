@@ -3,6 +3,7 @@ package com.example.coroutinesdemo
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_coroutine_cancel.*
 import kotlinx.coroutines.*
 import java.io.IOException
@@ -38,12 +39,55 @@ class CoroutineCancelActivity : AppCompatActivity() {
             }
         }
 
+        //取消Scope
         cancel_scope.setOnClickListener {
             scope.cancel()
         }
 
+        //取消子协程
         cancel_child.setOnClickListener {
             job2?.cancel()
+        }
+
+        //取消非挂起
+        cancel_unsuspended.setOnClickListener {
+            CoroutineScope(Dispatchers.Default).launch {
+                val startTime = System.currentTimeMillis()
+                val job = launch {
+                    var nextPrintTime = startTime
+                    var i = 0
+                    while (i < 5){
+                        if(System.currentTimeMillis() >= nextPrintTime){
+                            Log.i(TAG,"job: I'm sleeping ${i++} ...")
+                            nextPrintTime += 500L
+                        }
+                    }
+                }
+                delay(1300L)
+                Log.i(TAG,  "父协程执行")
+                job.cancel()
+                Log.i(TAG,  "父协程继续执行")
+            }
+        }
+
+        //取消异常被捕获的情况，取消是否生效
+        try_catch_cancel.setOnClickListener {
+            CoroutineScope(Dispatchers.Default).launch {
+                val job = launch {
+                    repeat(5) { i ->
+                        try {
+                            Log.i(TAG,"打印：$i-时间：${System.currentTimeMillis()}")
+                            delay(500)
+                        } catch (e: Exception) {
+                            Log.i(TAG,"异常：$e")
+                        }
+                    }
+                }
+                delay(1300L)
+                Log.i(TAG,  "父协程执行")
+                job.cancel()
+                Log.i(TAG,  "父协程继续执行")
+            }
         }
 
         resource_close.setOnClickListener {
@@ -72,17 +116,22 @@ class CoroutineCancelActivity : AppCompatActivity() {
             }
         }
 
-        //取消一些不可取消任务
+        //取消协程时，指定等待不应该取消任务执行完毕
         cancel_nonCancel.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.IO).launch(CoroutineExceptionHandler { context, throwable ->
+                Log.i(TAG,"捕获异常：$throwable")
+            }) {
                 val job = launch {
                     try {
                         repeat(1000) { i ->
                             Log.i(TAG, "job sleep$i")
                             delay(500)
                         }
+                    } catch (e: Exception) {
+                        Log.i(TAG, "异常是：${e}")
                     } finally {
                         //假设是释放资源，并且是一个耗时的操作,如果不切换这个调度，则资源释放不会完成，会造成内存泄漏
+                        //执行这个调度，其他子协程的异常会等待这段代码执行完成才处理异常
                         withContext(NonCancellable) {
                             Log.i(TAG, "开始释放资源……")
                             delay(2000)
@@ -90,8 +139,14 @@ class CoroutineCancelActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                launch {
+                    Log.i(TAG, "第二个协程开始，并抛出异常")
+                    delay(500)
+                    throw NullPointerException()
+                }
                 delay(2000)
-                job.cancelAndJoin()
+                job.cancel()
                 Log.i(TAG, "取消任务，并且继续执行")
             }
         }

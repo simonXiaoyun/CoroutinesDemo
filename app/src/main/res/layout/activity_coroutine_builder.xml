@@ -41,4 +41,20 @@
         android:text="LifeCycle"
         android:textAllCaps="false"
         />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/concurrence_demo1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="并发运行Demo1"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/concurrence_demo2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="并发运行Demo2"
+        android:textAllCaps="false"
+        />
 </LinearLayout>

@@ -41,6 +41,22 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel_unsuspended"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="cancel unsuspended"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/try_catch_cancel"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="cancel tryCatch"
+        android:textAllCaps="false"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/resource_close"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
